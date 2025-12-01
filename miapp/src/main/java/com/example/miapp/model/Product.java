@@ -5,6 +5,7 @@ import lombok.*;
 
 @Entity // Esta clase se convierte en tabla
 @Data // Lombok genera getters/setters/toString/etc.
+@Table(name = "products")
 @NoArgsConstructor // Constructor vacío
 @AllArgsConstructor // Constructor con todos los campos
 public class Product {
