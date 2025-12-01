@@ -8,7 +8,7 @@ import com.example.miapp.repository.ProductRepository;
 
 @RestController
 @RequestMapping("/api/products")
-@CrossOrigin(origins = "*") // Permite peticiones desde frontend
+@CrossOrigin(origins = "*")
 public class ProductController {
 
     private final ProductRepository productRepository;
@@ -17,37 +17,41 @@ public class ProductController {
         this.productRepository = productRepository;
     }
 
-    // Obtener todos los productos
+
     @GetMapping
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
 
-    // Obtener Producto por ID
+
     @GetMapping("/{id}")
     public Product getProductById(@PathVariable Long id) {
         return productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Product not found"));
     }
 
-    // Crear un nuevo producto
+
     @PostMapping
-    public Product createProduct(@RequestBody Product producto) {
-        return productRepository.save(producto);
+    public Product createProduct(@RequestBody Product product) {
+        product.setId(null);
+        return productRepository.save(product);
     }
 
-    // Actualizar producto existente
+
     @PutMapping("/{id}")
     public Product updateProduct(@PathVariable Long id, @RequestBody Product productDetails) {
         Product producto = productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Product not found"));
 
         producto.setName(productDetails.getName());
+        producto.setPrice(productDetails.getPrice());
         producto.setDescription(productDetails.getDescription());
+        producto.setCategory(productDetails.getCategory());
+
         return productRepository.save(producto);
     }
 
-    // Eliminar Producto
+
     @DeleteMapping("/{id}")
     public void deleteProduct(@PathVariable Long id) {
         productRepository.deleteById(id);
