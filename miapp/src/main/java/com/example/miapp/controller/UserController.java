@@ -14,6 +14,7 @@ public class UserController {
 
     private final UserRepository userRepository;
 
+
     public UserController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
@@ -28,7 +29,7 @@ public class UserController {
     @GetMapping("/{id}")
     public User getUserById(@PathVariable Long id) {
         return userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
     }
 
 
@@ -49,7 +50,7 @@ public class UserController {
     @PutMapping("/{id}")
     public User updateUser(@PathVariable Long id, @RequestBody User userDetails) {
         User user = userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
         user.setUsername(userDetails.getUsername());
         user.setPassword(userDetails.getPassword());

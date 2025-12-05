@@ -1,23 +1,25 @@
 package com.example.miapp.model;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Entity // Esta clase se convierte en tabla
-@Data // Lombok genera getters/setters/toString/etc.
+@Entity
 @Table(name = "products")
-@NoArgsConstructor // Constructor vacío
-@AllArgsConstructor // Constructor con todos los campos
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Product {
 
-    @Id // Clave primaria
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto incrementa el id
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name; 
+    private String name;
     private Double price;
     private String description;
     private String category;
-
+    private String imageUrl;
+    
 }
-
