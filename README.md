@@ -18,4 +18,4 @@ Provee una **API REST** para la gestión de usuarios y productos de una tienda e
 - Java  
 - Spring Boot (Spring Web, Spring Data JPA)  
 - PostgreSQL  
-- Gradle  
+- Maven
